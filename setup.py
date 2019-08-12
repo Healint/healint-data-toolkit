@@ -22,7 +22,9 @@ setup(
         'attrs==19.1.0',
         'click==7.0',
         'psycopg2-binary==2.8.3',
-        'sqlalchemy==1.3.0'
+        'sqlalchemy==1.3.0',
+        'requests==2.22.0',
+        'lxml==4.4.1'
     ],
     package_data={},
     data_files=[],

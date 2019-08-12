@@ -4,7 +4,6 @@ from typing import Dict, Any, List
 
 from healint_data_toolkit.models.config import DatabaseConfig
 from healint_data_toolkit.models.database import DatabaseHook
-from healint_data_toolkit.exceptions import DuplicateQueryNameError
 
 
 class DatabaseManager:
@@ -14,7 +13,6 @@ class DatabaseManager:
         2. manages one or more database connections
         3. dynamic query exectuor
         4. ORM layer
-
     """
 
     def __init__(
