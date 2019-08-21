@@ -11,7 +11,7 @@ class DatabaseManager:
     """
         1. automatically converts credentials in TOML config to database connections
         2. manages one or more database connections
-        3. dynamic query exectuor
+        3. dynamic query executor
         4. ORM layer
     """
 
@@ -67,7 +67,8 @@ class DatabaseManager:
         for file_name in os.listdir(self.loaded_queries_path):
             if ".sql" not in file_name:
                 logging.warning(f"{file_name} is not a SQL file. Please check or append the `.sql` extension")
-
+                continue
+            else:
                 with open(os.path.join(self.loaded_queries_path, file_name), "r") as fin:
                     raw_string = fin.read()
 

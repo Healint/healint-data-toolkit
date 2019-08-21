@@ -7,5 +7,7 @@ class ConfigKey(Enum):
 
 
 class HTTPRequestPageSourceOutput(Enum):
-    FILE = 'file'
-    STRING = 'string'
+    FILE = 'FILE'
+    STRING = 'STRING'
+    SOUP = 'SOUP'
+    JSON = 'JSON'

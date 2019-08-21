@@ -1,4 +1,5 @@
 import logging
+import os
 from typing import Dict
 
 import toml
@@ -46,3 +47,14 @@ class ConfigManager:
         logging.warning(f"{len(db_config)} db credentials parsed. ")
 
         return db_config
+
+    @staticmethod
+    def init_temp_folder():
+        """
+        init a temp folder in the project root
+        :return:
+        """
+        # init temp folder
+        if not os.path.exists('temp'):
+            os.mkdir('temp')
+            logging.warning('**temp** folder is created at project root.')
