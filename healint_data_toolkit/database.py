@@ -16,10 +16,10 @@ class DatabaseManager:
     """
 
     def __init__(
-            self,
-            db_configs: Dict[str, "DatabaseConfig"],
-            loaded_queries_path: str = None,
-            echo: bool = False
+        self,
+        db_configs: Dict[str, "DatabaseConfig"],
+        loaded_queries_path: str = None,
+        echo: bool = False,
     ):
         self.db_configs = db_configs
         self.echo = echo  # prints SQL statements
@@ -38,10 +38,7 @@ class DatabaseManager:
         if not self._hooks:
 
             self._hooks = {
-                name: DatabaseHook(
-                    db_config=single_dbc,
-                    connection_name=name
-                )
+                name: DatabaseHook(db_config=single_dbc, connection_name=name)
                 for name, single_dbc in self.db_configs.items()
             }
 
@@ -61,15 +58,21 @@ class DatabaseManager:
         """
 
         if not os.path.isabs(self.loaded_queries_path):
-            logging.warning("Loaded queries path is relative, ensure the path is relative to"
-                            "the project root. ")
+            logging.warning(
+                "Loaded queries path is relative, ensure the path is relative to"
+                "the project root. "
+            )
 
         for file_name in os.listdir(self.loaded_queries_path):
             if ".sql" not in file_name:
-                logging.warning(f"{file_name} is not a SQL file. Please check or append the `.sql` extension")
+                logging.warning(
+                    f"{file_name} is not a SQL file. Please check or append the `.sql` extension"
+                )
                 continue
             else:
-                with open(os.path.join(self.loaded_queries_path, file_name), "r") as fin:
+                with open(
+                    os.path.join(self.loaded_queries_path, file_name), "r"
+                ) as fin:
                     raw_string = fin.read()
 
                     # parse queries
@@ -90,8 +93,9 @@ class DatabaseManager:
             elif "-- name:" in row:
                 current_key = row.split("-- name:")[1].strip().lower()
                 if current_key in self.loaded_queries:
-                    raise Exception(f"{current_key} is already used. Resolve duplicated query name!")
+                    raise Exception(
+                        f"{current_key} is already used. Resolve duplicated query name!"
+                    )
                 self.loaded_queries[current_key] = ""
             elif len(row) > 0 and current_key in self.loaded_queries.keys():
                 self.loaded_queries[current_key] += row + "\n"
-

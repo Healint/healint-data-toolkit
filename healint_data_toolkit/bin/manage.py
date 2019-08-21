@@ -17,5 +17,5 @@ def dev_endpoints():
     click.echo("Hello world")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

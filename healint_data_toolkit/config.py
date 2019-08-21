@@ -19,7 +19,7 @@ class ConfigManager:
 
     def __init__(self, config_path: str):
 
-        with open(config_path, 'r') as file:
+        with open(config_path, "r") as file:
             self.parsed_object = toml.loads(file.read())
 
         self._db_config = {}
@@ -55,6 +55,6 @@ class ConfigManager:
         :return:
         """
         # init temp folder
-        if not os.path.exists('temp'):
-            os.mkdir('temp')
-            logging.warning('**temp** folder is created at project root.')
+        if not os.path.exists("temp"):
+            os.mkdir("temp")
+            logging.warning("**temp** folder is created at project root.")

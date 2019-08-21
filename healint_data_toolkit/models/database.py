@@ -8,12 +8,8 @@ from healint_data_toolkit.exceptions import UnknownLoadedQueryNameError, EmptyQu
 
 
 class DatabaseHook:
-
     def __init__(
-            self,
-            db_config: "DatabaseConfig",
-            connection_name: str,
-            echo: bool = False
+        self, db_config: "DatabaseConfig", connection_name: str, echo: bool = False
     ):
         self.connection_name = connection_name
         self.db_config = db_config
@@ -27,19 +23,20 @@ class DatabaseHook:
     def engine(self):
         if not self._engine:
             self._engine = sqla.create_engine(
-                self.db_config.sqlalchemy_uri,
-                echo=self.echo
+                self.db_config.sqlalchemy_uri, echo=self.echo
             )
 
         return self._engine
 
     @property
     def conn(self):
-        logging.warning(f"Establishing connection to database, using connection: {self.connection_name}")
+        logging.warning(
+            f"Establishing connection to database, using connection: {self.connection_name}"
+        )
 
         connection = self.engine.connect()
 
-        logging.warning('connection established.')
+        logging.warning("connection established.")
         return connection
 
     def add_loaded_queries(self, loaded_queries: Dict[str, str]):
@@ -59,10 +56,10 @@ class DatabaseHook:
         logging.warning("initialisation complete.")
 
     def execute_query(
-            self,
-            query: str = None,
-            query_name: str = None,
-            parameters: Dict[str, Any] = None,
+        self,
+        query: str = None,
+        query_name: str = None,
+        parameters: Dict[str, Any] = None,
     ):
         """
         Execute a query or a loaded query, parameters are acceptable

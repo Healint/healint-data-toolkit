@@ -8,13 +8,9 @@ logger = logging.getLogger(__name__)
 
 
 class HTTPRequestManager:
-
     @staticmethod
     def get_response(
-            url: str,
-            local_path: str = None,
-            output: str = 'STRING',
-            encoding='utf-8'
+        url: str, local_path: str = None, output: str = "STRING", encoding="utf-8"
     ) -> Optional[Union[str, BeautifulSoup]]:
         response = requests.get(url)
 
@@ -29,7 +25,7 @@ class HTTPRequestManager:
             if local_path is None:
                 raise Exception("You must define a local path for file output format")
 
-            with open(local_path, 'w') as file_written:
+            with open(local_path, "w") as file_written:
                 file_written.write(string_response)
 
         elif output_format == HTTPRequestPageSourceOutput.STRING:
@@ -43,5 +39,3 @@ class HTTPRequestManager:
 
         else:
             raise Exception("Unknown output format. ")
-
-

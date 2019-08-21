@@ -16,4 +16,3 @@ class EmptyQueryError(Exception):
 
 class DuplicateQueryNameError(Exception):
     pass
-
