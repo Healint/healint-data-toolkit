@@ -22,7 +22,7 @@ setup(
         "psycopg2-binary==2.8.3",
         "sqlalchemy==1.3.0",
         "requests==2.22.0",
-        "lxml==4.4.1",
+        "lxml==4.9.1",
         "bs4==4.8.0",
     ],
     package_data={},
